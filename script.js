@@ -3,7 +3,6 @@ const URL = "https://teachablemachine.withgoogle.com/models/kj8dNAyOx/";
 
 let model, webcam, labelContainer, maxPredictions;
 let isRunning = false;
-let animationFrameId = null;
 
 // Cargar el modelo de imagen
 async function init() {
@@ -16,47 +15,23 @@ async function init() {
 
     // Configurar la webcam
     const flip = true; // Voltear la imagen horizontalmente
-    webcam = new tmImage.Webcam(640, 480, flip); // Ancho, alto, voltear
+    webcam = new tmImage.Webcam(400, 400, flip); // Ancho, alto, voltear
     await webcam.setup(); // Solicitar acceso a la webcam
     await webcam.play();
-    
-    // Mostrar el video de la cámara
-    const videoElement = document.getElementById("webcam");
-    const canvasElement = document.getElementById("canvas");
-    
-    // Configurar el video para mostrar el stream
-    videoElement.srcObject = webcam.webcam;
-    videoElement.width = webcam.width;
-    videoElement.height = webcam.height;
-    
-    // Configurar el canvas para las predicciones
-    canvasElement.width = webcam.width;
-    canvasElement.height = webcam.height;
-    
-    // Mostrar el video y ocultar el mensaje inicial
-    videoElement.classList.add("active");
-    const labelContainer = document.getElementById("label-container");
-    labelContainer.style.background = "transparent";
-    labelContainer.style.alignItems = "flex-end";
-    labelContainer.style.justifyContent = "center";
-    labelContainer.style.paddingBottom = "20px";
-    document.getElementById("prediction-label").textContent = "Cargando...";
-    
+    window.requestAnimationFrame(loop);
+
     // Actualizar la UI
-    document.getElementById("start-button").style.display = "none";
-    document.getElementById("stop-button").style.display = "block";
+    document.getElementById("webcam").srcObject = webcam.webcam;
+    document.getElementById("webcam").classList.add("active");
+    document.getElementById("start-button").classList.add("hidden");
+    document.getElementById("stop-button").classList.remove("hidden");
     isRunning = true;
-    
-    // Iniciar el loop de predicción
-    loop();
 }
 
 async function loop() {
-    if (!isRunning) return;
-    
     webcam.update(); // Actualizar el frame de la webcam
     await predict();
-    animationFrameId = window.requestAnimationFrame(loop);
+    window.requestAnimationFrame(loop);
 }
 
 // Ejecutar la predicción del modelo
@@ -108,20 +83,11 @@ async function startCamera() {
 
 // Función para detener la cámara
 function stopCamera() {
-    isRunning = false;
-    
-    // Cancelar el loop de animación
-    if (animationFrameId) {
-        window.cancelAnimationFrame(animationFrameId);
-        animationFrameId = null;
-    }
-    
-    // Detener la webcam de Teachable Machine
     if (webcam) {
         webcam.stop();
+        isRunning = false;
     }
     
-    // Detener el stream de video
     const video = document.getElementById("webcam");
     if (video.srcObject) {
         const tracks = video.srcObject.getTracks();
@@ -129,13 +95,11 @@ function stopCamera() {
         video.srcObject = null;
     }
     
-    // Restaurar la UI
     video.classList.remove("active");
-    document.getElementById("label-container").style.background = "rgba(15, 23, 42, 0.8)";
-    document.getElementById("prediction-label").textContent = "Cámara detenida. Haz clic en 'Iniciar Cámara' para comenzar de nuevo.";
+    document.getElementById("prediction-label").textContent = "Cámara detenida";
     document.getElementById("prediction-label").style.background = "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)";
-    document.getElementById("start-button").style.display = "block";
-    document.getElementById("stop-button").style.display = "none";
+    document.getElementById("start-button").classList.remove("hidden");
+    document.getElementById("stop-button").classList.add("hidden");
 }
 
 // Event listeners

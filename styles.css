@@ -296,15 +296,10 @@ section {
     height: 100%;
     object-fit: cover;
     display: none;
-    transform: scaleX(-1); /* Espejo horizontal para mejor UX */
 }
 
 #webcam.active {
     display: block;
-}
-
-#canvas {
-    display: none;
 }
 
 .label-container {
@@ -318,26 +313,11 @@ section {
     justify-content: center;
     background: rgba(15, 23, 42, 0.8);
     backdrop-filter: blur(10px);
-    transition: background 0.3s ease;
-    pointer-events: none;
-    z-index: 2;
 }
 
-.demo-video-container:has(#webcam.active) .label-container {
+#webcam.active + .label-container {
     background: transparent;
     pointer-events: none;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 20px;
-}
-
-/* Fallback para navegadores que no soportan :has() */
-#webcam.active ~ #canvas ~ .label-container {
-    background: transparent;
-    pointer-events: none;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 20px;
 }
 
 .prediction-label {
@@ -350,20 +330,6 @@ section {
     box-shadow: var(--shadow-lg);
     text-align: center;
     min-width: 200px;
-    white-space: pre-line;
-    line-height: 1.5;
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-}
-
-.demo-video-container:has(#webcam.active) .prediction-label {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .demo-info {
@@ -391,8 +357,14 @@ section {
     margin-bottom: 0.5rem;
 }
 
-.demo-button {
+.demo-buttons-container {
+    display: flex;
+    gap: 1rem;
     width: 100%;
+}
+
+.demo-button {
+    flex: 1;
     padding: 1rem 2rem;
     font-size: 1.1rem;
     font-weight: 600;
@@ -403,6 +375,11 @@ section {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: var(--shadow-md);
+    min-width: 0;
+}
+
+.hidden {
+    display: none !important;
 }
 
 .demo-button:hover {
@@ -411,16 +388,14 @@ section {
 }
 
 .demo-button.secondary {
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-    color: white;
-    border: none;
-    margin-top: 1rem;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
 }
 
 .demo-button.secondary:hover {
-    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    background: var(--bg-primary);
+    border-color: var(--primary-color);
 }
 
 /* CTA Section */
