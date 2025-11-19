@@ -302,18 +302,6 @@ section {
     display: block;
 }
 
-#canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-    transform: scaleX(-1); /* Espejo horizontal */
-    z-index: 1;
-}
-
 .label-container {
     position: absolute;
     top: 0;
@@ -321,18 +309,15 @@ section {
     right: 0;
     bottom: 0;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
-    padding-bottom: 20px;
     background: rgba(15, 23, 42, 0.8);
     backdrop-filter: blur(10px);
-    transition: background 0.3s ease;
-    pointer-events: none;
-    z-index: 2;
 }
 
-#webcam.active ~ .label-container {
+#webcam.active + .label-container {
     background: transparent;
+    pointer-events: none;
 }
 
 .prediction-label {
@@ -345,8 +330,6 @@ section {
     box-shadow: var(--shadow-lg);
     text-align: center;
     min-width: 200px;
-    white-space: pre-line;
-    line-height: 1.5;
 }
 
 .demo-info {
@@ -374,14 +357,8 @@ section {
     margin-bottom: 0.5rem;
 }
 
-.demo-buttons-container {
-    display: flex;
-    gap: 1rem;
-    width: 100%;
-}
-
 .demo-button {
-    flex: 1;
+    width: 100%;
     padding: 1rem 2rem;
     font-size: 1.1rem;
     font-weight: 600;
@@ -392,27 +369,11 @@ section {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: var(--shadow-md);
-    min-width: 0;
-}
-
-.hidden {
-    display: none !important;
 }
 
 .demo-button:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
-}
-
-.demo-button.secondary {
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    border: 2px solid var(--border-color);
-}
-
-.demo-button.secondary:hover {
-    background: var(--bg-primary);
-    border-color: var(--primary-color);
 }
 
 /* CTA Section */
