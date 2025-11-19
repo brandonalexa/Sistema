@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Detección de Presencia - OcupadoLibre</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Detección Inteligente</span>
+                    <span class="title-line">de Presencia</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Tecnología avanzada de reconocimiento de imágenes que detecta automáticamente 
+                    cuando hay alguien frente a la cámara o cuando el espacio está libre.
+                </p>
+                <div class="hero-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <p>Tiempo Real</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <p>Precisión Alta</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <p>Privacidad</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Características Principales</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-number">01</div>
+                    <h3>Detección Automática</h3>
+                    <p>Reconoce instantáneamente la presencia o ausencia de personas frente a la cámara sin necesidad de configuración manual.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-number">02</div>
+                    <h3>Procesamiento en Tiempo Real</h3>
+                    <p>Análisis continuo de la imagen con latencia mínima para respuestas inmediatas a cambios en el estado.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-number">03</div>
+                    <h3>Fácil Integración</h3>
+                    <p>Compatible con múltiples sistemas y plataformas, listo para implementar en tu infraestructura existente.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-number">04</div>
+                    <h3>Optimización de Recursos</h3>
+                    <p>Gestiona eficientemente el uso de espacios y recursos basándote en datos de ocupación en tiempo real.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section class="clients">
+        <div class="container">
+            <h2 class="section-title">Ideal Para</h2>
+            <p class="section-subtitle">Nuestro sistema es perfecto para diversos sectores que requieren monitoreo inteligente de espacios</p>
+            <div class="clients-grid">
+                <div class="client-card">
+                    <div class="client-icon">💻</div>
+                    <h3>Laboratorios Informáticos</h3>
+                    <p>Monitorea la disponibilidad de estaciones de trabajo y optimiza la distribución de recursos en laboratorios de cómputo.</p>
+                </div>
+                <div class="client-card">
+                    <div class="client-icon">🏢</div>
+                    <h3>Empresas de Tecnologías</h3>
+                    <p>Gestiona espacios de trabajo, salas de reuniones y áreas comunes con detección automática de ocupación.</p>
+                </div>
+                <div class="client-card">
+                    <div class="client-icon">🌐</div>
+                    <h3>Administradores de Cibers</h3>
+                    <p>Controla la disponibilidad de computadoras en tiempo real, mejorando la experiencia del cliente y la eficiencia operativa.</p>
+                </div>
+                <div class="client-card">
+                    <div class="client-icon">🏫</div>
+                    <h3>Instituciones Educativas</h3>
+                    <p>Gestiona aulas, bibliotecas y espacios de estudio con información precisa sobre disponibilidad.</p>
+                </div>
+                <div class="client-card">
+                    <div class="client-icon">🏥</div>
+                    <h3>Centros de Salud</h3>
+                    <p>Monitorea salas de espera, consultorios y áreas comunes para optimizar el flujo de pacientes.</p>
+                </div>
+                <div class="client-card">
+                    <div class="client-icon">🏪</div>
+                    <h3>Espacios Comerciales</h3>
+                    <p>Analiza patrones de ocupación en tiendas, restaurantes y espacios comerciales para mejorar la gestión.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo">
+        <div class="container">
+            <h2 class="section-title">Prueba el Sistema</h2>
+            <p class="section-subtitle">Experimenta la tecnología en acción. Permite el acceso a tu cámara para ver la detección en tiempo real.</p>
+            <div class="demo-container">
+                <div class="demo-video-container">
+                    <video id="webcam" autoplay playsinline></video>
+                    <canvas id="canvas" style="display: none;"></canvas>
+                    <div id="label-container" class="label-container">
+                        <div class="prediction-label" id="prediction-label">Haz clic en "Iniciar Cámara" para comenzar</div>
+                    </div>
+                </div>
+                <div class="demo-info">
+                    <h3>Instrucciones</h3>
+                    <ol>
+                        <li>Haz clic en "Iniciar Cámara" para comenzar</li>
+                        <li>Permite el acceso a tu cámara cuando se solicite</li>
+                        <li>El sistema detectará automáticamente si hay alguien frente a la cámara</li>
+                        <li>Los resultados se mostrarán en tiempo real</li>
+                    </ol>
+                    <button id="start-button" class="demo-button">Iniciar Cámara</button>
+                    <button id="stop-button" class="demo-button secondary" style="display: none;">Detener Cámara</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">¿Listo para transformar tu gestión de espacios?</h2>
+                <p class="cta-text">Contacta con nosotros para conocer más sobre cómo este sistema puede adaptarse a tus necesidades específicas.</p>
+                <a href="https://wa.me/573215019442" target="_blank" class="cta-button">Solicitar Información</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 OcupadoLibre. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Teachable Machine Script -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
